@@ -12,10 +12,10 @@ const StreamsList = () => {
   }, []);
 
   return (
-    <div>
+    <div className="streams-list">
       {liveStreams &&
         liveStreams.map((ls) => (
-          <div className="card" key={ls.gameId}>
+          <div key={ls.gameId}>
             <h3>{ls.gameTitle}</h3>
             <ul>
               {ls.streams.map((stream) => (

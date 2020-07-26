@@ -1,7 +1,11 @@
 import React from 'react';
 
 const Navbar = () => {
-  return <h1>Twitch Live Viewer</h1>;
+  return (
+    <div className="navbar">
+      <h1>Twitch Live Viewer</h1>
+    </div>
+  );
 };
 
 export default Navbar;

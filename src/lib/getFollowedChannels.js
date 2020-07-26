@@ -3,11 +3,16 @@ import axios from 'axios';
 import { CLIENT_ID, LIMIT_AMOUNT } from './config';
 
 export default async (id) => {
-  let uri = `https://api.twitch.tv/helix/users/follows?from_id=${id}&first=${LIMIT_AMOUNT}`;
+  let uri = `https://api.twitch.tv/helix/users/follows`;
   let followedChannels = [];
+  const params = {
+    from_id: id,
+    first: LIMIT_AMOUNT,
+  };
   try {
     while (true) {
       const res = await axios.get(uri, {
+        params,
         headers: {
           'Client-ID': CLIENT_ID,
         },
@@ -16,7 +21,7 @@ export default async (id) => {
       if (!res.data.pagination.cursor) {
         break;
       } else {
-        uri = uri + '&after=' + res.data.pagination.cursor;
+        params['after'] = res.data.pagination.cursor;
       }
     }
     return followedChannels;

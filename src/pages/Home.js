@@ -7,9 +7,7 @@ const Home = () => {
   return (
     <div className="container">
       <StreamsList />
-      <div className="video-player">
-        <VideoPlayer />
-      </div>
+      <VideoPlayer />
     </div>
   );
 };

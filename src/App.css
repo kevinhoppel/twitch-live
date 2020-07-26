@@ -1,3 +1,8 @@
+:root {
+  --yellow: #ffc600;
+  --black: #272727;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -7,10 +12,54 @@ html {
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
   font-size: 10px;
+  color: #e3e3e3;
+  background-color: var(--black);
 }
 
 */ *,
 *:before,
 *:after {
   box-sizing: inherit;
+}
+
+.navbar {
+  display: grid;
+  text-align: center;
+  align-content: center;
+  min-height: 10em;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 2fr 6fr;
+  width: 1200px;
+  margin: 20px auto;
+}
+
+.streams-list {
+  height: 550px;
+  overflow: auto;
+}
+
+.video-player {
+  display: flex;
+  justify-content: center;
+  margin-left: 10px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
