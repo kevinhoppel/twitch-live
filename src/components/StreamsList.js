@@ -1,32 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 
-import getLiveStreams from '../lib/getLiveStreams';
+import twitchContext from '../context/twitchContext';
+import Stream from './Stream';
 
 const StreamsList = () => {
-  const [liveStreams, setLiveStreams] = useState([]);
-
-  const fetchData = async () => {
-    setLiveStreams(await getLiveStreams());
-  };
+  const { liveStreams, getLiveStreams } = useContext(twitchContext);
 
   useEffect(() => {
-    fetchData();
+    getLiveStreams();
+    // eslint-disable-next-line
   }, []);
 
   return (
-    <>
-      {liveStreams ? (
-        <ul>
-          {liveStreams.map((f, i) => (
-            <li>
-              {i + 1}: {f.user_name} - {f.title} - {f.viewer_count}
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>Loading...</p>
-      )}
-    </>
+    <div>
+      {liveStreams &&
+        liveStreams.map((ls) => (
+          <div className="card" key={ls.gameId}>
+            <h3>{ls.gameTitle}</h3>
+            <ul>
+              {ls.streams.map((stream) => (
+                <Stream key={stream.id} stream={stream} />
+              ))}
+            </ul>
+          </div>
+        ))}
+    </div>
   );
 };
 

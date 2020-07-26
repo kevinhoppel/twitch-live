@@ -2,6 +2,9 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 
+import TwitchState from './context/TwitchState';
+
+import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Settings from './pages/Settings';
@@ -15,16 +18,17 @@ if (localStorage.token) {
 
 const App = () => {
   return (
-    <Router>
-      <div className="container">
+    <TwitchState>
+      <Router>
+        <Navbar />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/settings" component={Settings} />
           <Route exact path="/callback" component={Callback} />
         </Switch>
-      </div>
-    </Router>
+      </Router>
+    </TwitchState>
   );
 };
 
